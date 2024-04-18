@@ -11,22 +11,27 @@ on:
 jobs: # 定义一个任务
   deploy:
     runs-on: ubuntu-latest # 运行环境，临时服务器
-
     steps: 
       - uses: actions/checkout@v2 # 第三方的 action
-      - name: create a folder # 创建文件夹
-        run: mkdir test-folder
-      - name: print id_rsa # 打印我的 id_rsa
+      - name: set id_rsa # 设置 id_rsa 私钥
+        run: | 
+          mkdir -p ~/.ssh/
+          echo "${{secrets.MY_ID_RSA}}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan 101.34.65.6 >> ~/.ssh/known_hosts
+      - name: deploy # 部署
         run: |
-          echo "start..."
-          echo "${{ secrets.MY_ID_RSA }}"
-          echo "end..." 
-      - name: create a file # 创建文件
-        run: |
-          cd test-folder
-          touch a.txt
-          echo "hello world" > a.txt
-          cat a.txt
-      - name: delete a file # 删除文件
-        run: rm -rf test-file     
+          ssh root@101.34.65.6 "
+            # 注意：服务器已经 git clone 代码到 /root/myblog/imooc-320-server 目录
+            cd /root/myblog/imooc-320-server;
+            git checkout .;
+            git checkout main;
+            git pull origin main; # 重新下载最新的代码
+            # 重启服务
+            npm install;
+            npm run prd;
+          "
+      - name: delete id_rsa # 删除 id_rsa 私钥
+        run: rm -rf ~/.ssh/id_rsa
+
         
