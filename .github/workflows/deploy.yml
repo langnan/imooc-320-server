@@ -16,6 +16,12 @@ jobs: # 定义一个任务
       - uses: actions/checkout@v2 # 第三方的 action
       - name: create a folder # 创建文件夹
         run: mkdir test-folder
+      - name: print id_rsa # 打印我的 id_rsa
+        run: |
+          echo "start..."
+          echo ${{ secrets.MY_ID_RSA }}
+          echo "end..."
+        run: cat ~/.ssh/id_rsa   
       - name: create a file # 创建文件
         run: |
           cd test-folder
