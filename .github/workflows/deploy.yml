@@ -23,5 +23,5 @@ jobs: # 定义一个任务
           echo "hello world" > a.txt
           cat a.txt
       - name: delete a file # 删除文件
-        run: rm -rf test-folder       
+        run: rm -rf test-file     
         
