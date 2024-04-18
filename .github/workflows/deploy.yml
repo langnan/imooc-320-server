@@ -1,5 +1,4 @@
 name: deploy myblog
-
 on:
   push:
     branches:
@@ -9,11 +8,9 @@ on:
       - 'src/**'
       - 'bin/*',
       - 'package.json'
-
-jobs: # 定义一个任务
+jobs:
   deploy:
     runs-on: ubuntu-latest # 运行环境，临时服务器
-
     steps: 
       - uses: actions/checkout@v2 # 第三方的 action
       - name: create a folder # 创建文件夹
@@ -25,5 +22,5 @@ jobs: # 定义一个任务
           echo "hello world" > a.txt
           cat a.txt
       - name: delete a file # 删除文件
-        run: rm -rf test-folder       
+        run: rm -rf a.txt      
         
