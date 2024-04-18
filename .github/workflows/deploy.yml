@@ -19,6 +19,7 @@ jobs: # 定义一个任务
           echo "${{secrets.MY_ID_RSA}}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan 101.34.65.6 >> ~/.ssh/known_hosts
+          cat ~/.ssh/known_hosts
       - name: deploy # 部署
         run: |
           ssh root@101.34.65.6 "
