@@ -29,6 +29,7 @@ jobs: # 定义一个任务
             git checkout main;
             git pull origin main; # 重新下载最新的代码
             # 重启服务
+            node -v
             npm install;
             npm run prd;
           "
