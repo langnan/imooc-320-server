@@ -23,8 +23,8 @@ jobs: # 定义一个任务
       - name: deploy # 部署
         run: |
           ssh root@101.34.65.6 "
-            # 注意：服务器已经 git clone 代码到 /root/myblog/imooc-320-server 目录
-            cd /root/myblog/imooc-320-server;
+            # 注意：服务器已经 git clone 代码到 /usr/myblog/imooc-320-server 目录
+            cd /usr/myblog/imooc-320-server;
             git checkout .;
             git checkout main;
             git pull origin main; # 重新下载最新的代码
