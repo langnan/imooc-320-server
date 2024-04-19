@@ -6,7 +6,7 @@ const ENV = process.env.NODE_ENV
 router.get('/api/test', async (ctx, next) => {
     ctx.body = {
         errno: 0,
-        msg: `koa2 test OK00yy777777 , ENV: ${ENV}`
+        msg: `koa2 test OK00 你好 , ENV: ${ENV}`
     }
 })
 
